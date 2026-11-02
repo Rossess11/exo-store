@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exodus Store - Showcase de Scripts & Sistemas FiveM</title>
+    <!-- Favicon / Logo -->
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <!-- Font Awesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Retro Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- ====================================================================
+         FIXED TOP CONTAINER (TICKER BANNER + NAVBAR)
+         ==================================================================== -->
+    <div class="top-header-fixed">
+        <!-- TOP TICKER / MARQUEE BANNER -->
+        <div class="ticker-banner">
+            <div class="ticker-content" id="tickerContent">
+                <span class="ticker-item"><i class="fa-solid fa-code"></i> SERVIDOR EXODUS ROLEPLAY EN DESARROLLO ACTIVO (PRÓXIMAMENTE ONLINE)</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fa-solid fa-shield-halved"></i> LEE LA NORMATIVA DE USO Y POLÍTICAS DE LICENCIA</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fa-brands fa-discord"></i> ÚNETE A LA COMUNIDAD EN DISCORD PARA SOLICITUDES Y DEVLOGS</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fa-solid fa-microchip"></i> TODOS LOS SCRIPTS OPTIMIZADOS A 0.00 MS RESMON</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fa-solid fa-gamepad"></i> ESTÉTICA RETRO GAMING EXCLUSIVA EN BLANCO Y NEGRO</span>
+            </div>
+        </div>
+
+        <!-- NAVBAR -->
+        <header class="navbar-wrapper">
+            <div class="navbar-container">
+                <!-- Brand Logo -->
+                <a href="#" class="brand-logo" onclick="app.showView('home'); return false;">
+                    <img src="assets/logo.png" alt="Exodus Logo">
+                    <div class="brand-text">
+                        <span class="brand-title">EXODUS STORE</span>
+                        <span class="brand-sub">SCRIPTS SHOWCASE</span>
+                    </div>
+                </a>
+
+                <!-- Navigation Tabs (NO DOCUMENTACIÓN as requested) -->
+                <nav>
+                    <ul class="nav-links">
+                        <li><button class="nav-btn active" id="tabHome" onclick="app.showView('home')"><i
+                                    class="fa-solid fa-house"></i> INICIO</button></li>
+                        <li><button class="nav-btn" id="tabCatalog" onclick="app.showView('catalog')"><i
+                                    class="fa-solid fa-layer-group"></i> CATÁLOGO</button></li>
+                        <li><button class="nav-btn" id="tabServer" onclick="app.showView('server')"><i
+                                    class="fa-solid fa-server"></i> SERVIDOR</button></li>
+                        <li><button class="nav-btn" id="tabNormativa" onclick="app.showView('normativa')"><i
+                                    class="fa-solid fa-gavel"></i> NORMATIVA</button></li>
+                    </ul>
+                </nav>
+
+                <!-- Nav Actions: Lang & Discord Profile -->
+                <div class="nav-actions">
+                    <div class="lang-pill" title="Idioma">
+                        <i class="fa-solid fa-globe"></i>
+                        <span>ES</span>
+                    </div>
+
+                    <!-- Discord Developer Profile Pill (Default / Estático) -->
+                    <div class="discord-profile-pill" id="discordPill" title="Desarrollador Oficial">
+                        <div class="discord-avatar-wrap">
+                            <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Rossos" id="userAvatar"
+                                class="discord-avatar" alt="Avatar">
+                            <span class="status-dot"></span>
+                        </div>
+                        <div class="discord-info">
+                            <span class="discord-name" id="userName">Rossos</span>
+                            <span class="discord-badge" id="userBadge"><i class="fa-brands fa-discord"></i> Desarrollador</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <!-- ====================================================================
+         MAIN APP CONTAINER
+         ==================================================================== -->
+    <main class="main-wrapper">
+
+        <!-- ================================================================
+             VIEW 1: INICIO (HOME)
+             ================================================================ -->
+        <section id="viewHome" class="view-section active">
+
+            <!-- Hero Showcase Box -->
+            <div class="hero-box">
+                <div class="hero-content">
+                    <div class="hero-tag"><i class="fa-solid fa-terminal"></i> EXODUS ROLEPLAY SYSTEMS</div>
+                    <h1 class="hero-title">SCRIPTS Y SISTEMAS PARA <span class="hero-highlight">FIVEM</span></h1>
+                    <p class="hero-desc">
+                        Explora la biblioteca completa de recursos desarrollados a medida con estética retro gaming,
+                        consumo optimizado a 0.00ms y máxima estabilidad. Desarrollados y testeados en <strong>Exodus
+                            Roleplay</strong>.
+                    </p>
+
+                    <div class="hero-cta-group">
+                        <button class="retro-btn retro-btn-black" onclick="app.showView('catalog')">
+                            <i class="fa-solid fa-arrow-right"></i> EXPLORAR CATÁLOGO
+                        </button>
+                        <a href="https://discord.gg/exodus" target="_blank" class="retro-btn retro-btn-discord">
+                            <i class="fa-brands fa-discord"></i> ÚNETE AL DISCORD
+                        </a>
+                    </div>
+
+                    <div class="hero-stats-row">
+                        <div class="stat-card">
+                            <div class="stat-value" id="statScripts">8</div>
+                            <div class="stat-label">SCRIPTS ACTIVOS</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">0.00 MS</div>
+                            <div class="stat-label">RESMON PROMEDIO</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="statPlayers">-</div>
+                            <div class="stat-label">OFFLINE EN EXODUS</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Right Preview Showcase -->
+                <div class="hero-preview-box">
+                    <div class="preview-badge-row">
+                        <span class="badge-flag"><i class="fa-solid fa-star"></i> SCRIPT DESTACADO</span>
+                        <span class="badge-flag" style="background:#fff; color:#000;">QB-CORE / OX</span>
+                    </div>
+
+                    <div class="preview-visual">
+                        <i class="fa-solid fa-gauge-high"></i>
+                        <span class="preview-visual-title">EXO-HUD RETRO GAMING</span>
+                    </div>
+
+                    <div class="preview-meta">
+                        <div class="preview-desc-text">HUD minimalista con velocímetro digital, cinturón sonoro y
+                            cinemáticas.</div>
+                        <button class="retro-btn retro-btn-white" style="padding: 6px 14px; font-size: 15px;"
+                            onclick="app.openScriptModal('exo-hud')">
+                            VER DETALLES
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categories Section -->
+            <div class="section-header">
+                <div class="section-title-wrap">
+                    <h2 class="section-title">EXPLORA POR CATEGORÍA</h2>
+                </div>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="categories-grid">
+                <div class="category-card" onclick="app.filterByCategory('hud')">
+                    <div class="cat-header">
+                        <i class="fa-solid fa-desktop cat-icon"></i>
+                        <div class="cat-btn-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                    </div>
+                    <div class="cat-body">
+                        <div class="cat-name">INTERFACES & HUD</div>
+                        <div class="cat-count">2 SCRIPTS</div>
+                    </div>
+                </div>
+
+                <div class="category-card" onclick="app.filterByCategory('multichar')">
+                    <div class="cat-header">
+                        <i class="fa-solid fa-users-gear cat-icon"></i>
+                        <div class="cat-btn-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                    </div>
+                    <div class="cat-body">
+                        <div class="cat-name">GESTIÓN DE PERSONAJES</div>
+                        <div class="cat-count">1 SCRIPT</div>
+                    </div>
+                </div>
+
+                <div class="category-card" onclick="app.filterByCategory('police')">
+                    <div class="cat-header">
+                        <i class="fa-solid fa-shield-halved cat-icon"></i>
+                        <div class="cat-btn-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                    </div>
+                    <div class="cat-body">
+                        <div class="cat-name">POLICÍA & EMERGENCIAS</div>
+                        <div class="cat-count">2 SCRIPTS</div>
+                    </div>
+                </div>
+
+                <div class="category-card" onclick="app.filterByCategory('systems')">
+                    <div class="cat-header">
+                        <i class="fa-solid fa-cube cat-icon"></i>
+                        <div class="cat-btn-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                    </div>
+                    <div class="cat-body">
+                        <div class="cat-name">SISTEMAS & ITEMS</div>
+                        <div class="cat-count">3 SCRIPTS</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Scripts Grid -->
+            <div class="section-header">
+                <div class="section-title-wrap">
+                    <h2 class="section-title">MÁS DESTACADOS</h2>
+                </div>
+                <div class="section-line"></div>
+                <button class="section-action-btn" onclick="app.showView('catalog')">
+                    VER CATÁLOGO COMPLETO <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <div class="scripts-grid" id="homeFeaturedGrid">
+                <!-- Dynamically rendered via app.js -->
+            </div>
+
+        </section>
+
+
+        <!-- ================================================================
+             VIEW 2: CATÁLOGO (TIENDA / SHOWCASE)
+             ================================================================ -->
+        <section id="viewCatalog" class="view-section">
+
+            <div class="section-header">
+                <div class="section-title-wrap">
+                    <h2 class="section-title">CATÁLOGO DE SCRIPTS</h2>
+                </div>
+                <div class="section-line"></div>
+            </div>
+
+            <!-- Toolbar: Filters and Search -->
+            <div class="catalog-toolbar">
+                <div class="filter-pills" id="filterPillsContainer">
+                    <button class="filter-pill active" data-cat="all" onclick="app.filterByCategory('all')">TODOS (<span id="countAll">11</span>)</button>
+                    <button class="filter-pill" data-cat="hud" onclick="app.filterByCategory('hud')">INTERFACES & HUD</button>
+                    <button class="filter-pill" data-cat="maps" onclick="app.filterByCategory('maps')">MAPAS</button>
+                    <button class="filter-pill" data-cat="multichar" onclick="app.filterByCategory('multichar')">MULTICHARACTER</button>
+                    <button class="filter-pill" data-cat="police" onclick="app.filterByCategory('police')">POLICÍA</button>
+                    <button class="filter-pill" data-cat="systems" onclick="app.filterByCategory('systems')">SISTEMAS NATIVOS</button>
+                </div>
+
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="catalogSearchInput" class="search-input"
+                        placeholder="Buscar por nombre, comando o framework..." oninput="app.handleSearch(this.value)">
+                </div>
+            </div>
+
+            <!-- Catalog Cards Grid -->
+            <div class="scripts-grid" id="catalogGrid">
+                <!-- Dynamically populated via app.js -->
+            </div>
+
+        </section>
+
+
+        <!-- ================================================================
+             VIEW 3: SERVIDOR (SOLO EXODUS ROLEPLAY)
+             ================================================================ -->
+        <section id="viewServer" class="view-section">
+
+            <div class="section-header">
+                <div class="section-title-wrap">
+                    <h2 class="section-title">NUESTROS SERVIDORES</h2>
+                </div>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="server-view-layout">
+                <!-- Main Exodus RP Server Card -->
+                <div class="server-hero-card">
+                    <div class="server-card-top">
+                        <div class="server-top-stripes"></div>
+                        <div class="server-status-pill offline">
+                            <i class="fa-solid fa-circle"></i> OFFLINE — EN DESARROLLO
+                        </div>
+                        <h1 class="server-hero-title">EXODUS ROLEPLAY</h1>
+                        <p class="server-tagline">El servidor oficial se encuentra actualmente <strong>fuera de línea</strong> mientras finalizamos el desarrollo, integración y optimización de los nuevos scripts y sistemas.</p>
+                    </div>
+
+                    <div class="server-card-content">
+                        <!-- Server Stats -->
+                        <div class="server-stats-badge-grid">
+                            <div class="server-badge-item">
+                                <div class="server-badge-num" style="color:#d90429;">OFFLINE</div>
+                                <div class="server-badge-lbl">ESTADO SERVIDOR</div>
+                            </div>
+                            <div class="server-badge-item">
+                                <div class="server-badge-num">EN DESARROLLO</div>
+                                <div class="server-badge-lbl">FASE ACTUAL</div>
+                            </div>
+                            <div class="server-badge-item">
+                                <div class="server-badge-num">PRÓXIMAMENTE</div>
+                                <div class="server-badge-lbl">APERTURA OFICIAL</div>
+                            </div>
+                        </div>
+
+                        <!-- Included Features -->
+                        <ul class="server-feature-list">
+                            <li class="server-feature-item"><i class="fa-solid fa-check"></i> Interfaz retro exclusiva en blanco y negro</li>
+                            <li class="server-feature-item"><i class="fa-solid fa-check"></i> Menú de porte policial de armas a la carta</li>
+                            <li class="server-feature-item"><i class="fa-solid fa-check"></i> Pantalla de bienvenida interactiva y cielo cinemático</li>
+                            <li class="server-feature-item"><i class="fa-solid fa-check"></i> Despachos y alertas con respuesta táctica en tecla G</li>
+                            <li class="server-feature-item"><i class="fa-solid fa-check"></i> Sistema de combustible adaptado 100% a target</li>
+                            <li class="server-feature-item"><i class="fa-solid fa-check"></i> Optimización sin caídas de FPS ni memory leaks</li>
+                        </ul>
+
+                        <!-- Direct Connection and Action Buttons -->
+                        <div class="server-buttons-grid">
+                            <button class="retro-btn retro-btn-white" style="justify-content: center; opacity: 0.8; cursor: not-allowed;" disabled>
+                                <i class="fa-solid fa-lock"></i> SERVIDOR OFFLINE
+                            </button>
+                            <a href="https://discord.gg/exodus" target="_blank" class="retro-btn retro-btn-discord"
+                                style="justify-content: center;">
+                                <i class="fa-brands fa-discord"></i> SEGUIR DESARROLLO EN DISCORD
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar: How to connect & Collaboration -->
+                <div class="server-sidebar-box">
+                    <div class="retro-side-card">
+                        <h3 class="side-card-title"><i class="fa-solid fa-terminal"></i> ESTADO DE CONEXIÓN</h3>
+                        <p class="side-card-text">El servidor está temporalmente cerrado al público mientras se aplican las últimas actualizaciones:</p>
+
+                        <div class="connect-ip-box">
+                            <span id="ipAddressText" style="color: #666; font-size: 13px;">Acceso restringido a desarrolladores</span>
+                            <span style="font-size: 11px; font-weight: bold; background: #d90429; color: #fff; padding: 2px 8px; border-radius: 4px;">OFFLINE</span>
+                        </div>
+
+                        <p class="side-card-text" style="margin-bottom: 0;">Puedes unirte a nuestro Discord oficial para consultar los devlogs y enterarte el primero de la fecha de apertura.</p>
+                    </div>
+
+                    <div class="retro-side-card">
+                        <h3 class="side-card-title"><i class="fa-solid fa-code-pull-request"></i> ¿BUSCAS SCRIPTS A
+                            MEDIDA?</h3>
+                        <p class="side-card-text">
+                            ¿Estás montando tu propio servidor y te interesa adquirir licencias o contratar desarrollo a
+                            medida de interfaces retro o sistemas complejos?
+                        </p>
+                        <button class="retro-btn retro-btn-black"
+                            style="width: 100%; justify-content: center; font-size: 16px;"
+                            onclick="app.showView('normativa')">
+                            VER POLÍTICAS DE SOLICITUD
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- ================================================================
+             VIEW 4: NORMATIVA (TERMS OF USE & SCRIPT POLICIES)
+             ================================================================ -->
+        <section id="viewNormativa" class="view-section">
+
+            <div class="normativa-layout">
+
+                <!-- Main Normativa Content -->
+                <div class="normativa-main">
+                    <div class="normativa-header-box">
+                        <h1 class="normativa-title">TÉRMINOS Y POLÍTICAS DE USO</h1>
+                        <p class="normativa-subtitle">Condiciones de acceso, uso de la web y licencias en caso de
+                            solicitar y adquirir scripts desarrollados por Rossos / Exodus.</p>
+                    </div>
+
+                    <!-- Policy 1 -->
+                    <article class="policy-card" id="pol1">
+                        <div class="policy-card-header">
+                            <span class="policy-num">01</span>
+                            <h2 class="policy-name">NATURALEZA DE LA PLATAFORMA</h2>
+                        </div>
+                        <div class="policy-body">
+                            <p>Exodus Store es un portal de exhibición y catálogo de proyectos (showcase). No opera como
+                                tienda automatizada con pasarela de pago directo. Cada script mostrado aquí ha sido
+                                creado o adaptado para el ecosistema de <strong>Exodus Roleplay</strong>.</p>
+                            <p style="margin-top: 8px;">Si un usuario o comunidad externa está interesada en adquirir
+                                una copia de un script, la solicitud debe realizarse de forma personalizada a través del
+                                canal oficial de soporte en Discord.</p>
+                        </div>
+                    </article>
+
+                    <!-- Policy 2 -->
+                    <article class="policy-card" id="pol2">
+                        <div class="policy-card-header">
+                            <span class="policy-num">02</span>
+                            <h2 class="policy-name">SOLICITUD Y ACCESO A SCRIPTS</h2>
+                        </div>
+                        <div class="policy-body">
+                            <p>Para solicitar el acceso a cualquiera de los recursos listados en este catálogo:</p>
+                            <ul>
+                                <li>Se deberá abrir un ticket en el Discord oficial de Exodus especificando el nombre
+                                    del script y los datos del servidor de destino.</li>
+                                <li>El desarrollador (Rossos) se reserva el derecho de admitir o rechazar solicitudes
+                                    según la disponibilidad técnica y compatibilidad.</li>
+                                <li>Una vez acordada la entrega, los scripts se proporcionan empaquetados y configurados
+                                    para el framework solicitado (QB-Core / ESX / Standalone).</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <!-- Policy 3 -->
+                    <article class="policy-card" id="pol3">
+                        <div class="policy-card-header">
+                            <span class="policy-num">03</span>
+                            <h2 class="policy-name">LICENCIA DE USO (MONO-SERVIDOR)</h2>
+                        </div>
+                        <div class="policy-body">
+                            <p>Cualquier recurso adquirido otorga una <strong>licencia de uso única e
+                                    intransferible</strong> para un único servidor de FiveM:</p>
+                            <ul>
+                                <li>La licencia no transfiere los derechos de autor ni la propiedad intelectual del
+                                    código fuente.</li>
+                                <li>Queda terminantemente prohibido compartir los archivos con terceros, publicar en
+                                    foros públicos o comunidades de recursos (leaks).</li>
+                                <li>No está permitida la reventa total ni parcial del producto bajo ningún concepto.
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <!-- Policy 4 -->
+                    <article class="policy-card" id="pol4">
+                        <div class="policy-card-header">
+                            <span class="policy-num">04</span>
+                            <h2 class="policy-name">MODIFICACIONES Y PERSONALIZACIÓN</h2>
+                        </div>
+                        <div class="policy-body">
+                            <p>El cliente tiene libertad para modificar archivos de configuración (`config.lua`),
+                                interfaces web (`html/`, `css/`) e idiomas para adaptarlos a la identidad de su
+                                servidor.</p>
+                            <p style="margin-top: 8px;">Sin embargo, no está permitido eliminar los créditos originales
+                                del autor en los encabezados ni reclamar la autoría del sistema.</p>
+                        </div>
+                    </article>
+
+                    <!-- Policy 5 -->
+                    <article class="policy-card" id="pol5">
+                        <div class="policy-card-header">
+                            <span class="policy-num">05</span>
+                            <h2 class="policy-name">SOPORTE Y ACTUALIZACIONES</h2>
+                        </div>
+                        <div class="policy-body">
+                            <p>El soporte técnico incluye:</p>
+                            <ul>
+                                <li>Resolución de dudas sobre instalación y dependencias base.</li>
+                                <li>Corrección de bugs nativos atribuibles al código original del script.</li>
+                                <li>Acceso a versiones actualizadas que se publiquen para optimizar rendimiento o
+                                    compatibilidad con nuevas builds de FiveM.</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <!-- Policy 6 -->
+                    <article class="policy-card" id="pol6">
+                        <div class="policy-card-header">
+                            <span class="policy-num">06</span>
+                            <h2 class="policy-name">REVOCACIÓN DE LICENCIA</h2>
+                        </div>
+                        <div class="policy-body">
+                            <p>El incumplimiento de cualquiera de estas cláusulas (incluyendo filtración, intento de
+                                reventa o actitudes fraudulentas) resultará en la revocación inmediata de la licencia,
+                                cese del soporte técnico y el bloqueo de acceso a futuras actualizaciones.</p>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Sticky Table of Contents -->
+                <aside class="normativa-sidebar">
+                    <div class="sticky-index-box">
+                        <div class="index-title"><i class="fa-solid fa-bookmark"></i> EN ESTA PÁGINA</div>
+                        <ul class="index-links">
+                            <li><button class="index-link-btn" onclick="app.scrollToPolicy('pol1')">01 Naturaleza del
+                                    sitio</button></li>
+                            <li><button class="index-link-btn" onclick="app.scrollToPolicy('pol2')">02 Solicitudes y
+                                    acceso</button></li>
+                            <li><button class="index-link-btn" onclick="app.scrollToPolicy('pol3')">03 Licencia
+                                    mono-servidor</button></li>
+                            <li><button class="index-link-btn" onclick="app.scrollToPolicy('pol4')">04 Modificaciones y
+                                    CSS</button></li>
+                            <li><button class="index-link-btn" onclick="app.scrollToPolicy('pol5')">05 Soporte &
+                                    updates</button></li>
+                            <li><button class="index-link-btn" onclick="app.scrollToPolicy('pol6')">06 Revocación de
+                                    licencia</button></li>
+                        </ul>
+                    </div>
+                </aside>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ====================================================================
+         SCRIPT DETAILS MODAL POPUP
+         ==================================================================== -->
+    <div class="modal-overlay" id="scriptModalOverlay" onclick="if(event.target === this) app.closeScriptModal()">
+        <div class="retro-modal">
+            <div class="modal-header">
+                <div class="modal-header-title">
+                    <i class="fa-solid fa-code"></i>
+                    <span id="modalScriptTitle">DETALLE DEL SCRIPT</span>
+                </div>
+                <button class="modal-close-btn" onclick="app.closeScriptModal()">✕</button>
+            </div>
+
+            <div class="modal-body">
+                <!-- Script Preview Image -->
+                <div class="modal-banner-wrap" id="modalBannerWrap" style="display:none;">
+                    <img id="modalBannerImg" src="" alt="Previsualización del script">
+                    <div class="modal-banner-overlay"></div>
+                </div>
+
+                <!-- Badges Row -->
+                <div class="modal-feature-badge-row">
+                    <span class="modal-tag-badge" id="modalTag">DESTACADO</span>
+                    <span class="modal-resmon-badge" id="modalResmon">0.00 ms</span>
+                    <div id="modalFrameworks" class="modal-frameworks-wrap"></div>
+                </div>
+
+                <!-- Description -->
+                <div class="modal-desc-box" id="modalFullDesc">
+                    Descripción del script...
+                </div>
+
+                <!-- Feature list -->
+                <h4 class="modal-block-title"><i class="fa-solid fa-list-check"></i> CARACTERÍSTICAS PRINCIPALES</h4>
+                <ul class="modal-features-list" id="modalFeaturesList">
+                    <!-- Dynamic -->
+                </ul>
+
+                <!-- Technical specs / commands -->
+                <h4 class="modal-block-title"><i class="fa-solid fa-terminal"></i> COMANDOS Y DEPENDENCIAS</h4>
+                <div class="modal-tech-specs" id="modalTechSpecs">
+                    <!-- Dynamic -->
+                </div>
+
+                <!-- Footer / Action CTA -->
+                <div class="modal-footer">
+                    <button class="retro-btn retro-btn-white" onclick="app.closeScriptModal()">
+                        CERRAR
+                    </button>
+                    <a href="https://discord.gg/exodus" target="_blank" class="retro-btn retro-btn-discord">
+                        <i class="fa-brands fa-discord"></i> SOLICITAR EN DISCORD
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====================================================================
+         FOOTER
+         ==================================================================== -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-copy">
+                &copy; 2026 <strong>EXODUS STORE</strong> — Desarrollado por Rossos para Exodus Roleplay. Estética Retro
+                Gaming.
+            </div>
+            <div class="footer-links">
+                <a href="#" class="footer-link" onclick="app.showView('home'); return false;">Inicio</a>
+                <a href="#" class="footer-link" onclick="app.showView('catalog'); return false;">Catálogo</a>
+                <a href="#" class="footer-link" onclick="app.showView('server'); return false;">Servidor</a>
+                <a href="#" class="footer-link" onclick="app.showView('normativa'); return false;">Normativa &
+                    Licencias</a>
+                <a href="https://discord.gg/exodus" target="_blank" class="footer-link">Discord Oficial</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- App Logic Scripts -->
+    <script src="js/scripts-data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
